@@ -1,3 +1,6 @@
+@php
+use Illuminate\Support\Facades\Storage;
+@endphp
 <div class="min-h-screen bg-[#081425] text-white">
     <style>
         .glass-card {
@@ -85,50 +88,9 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-
-            @foreach($projects as $project)
-                <div
-                    class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-blue-400 hover:-translate-y-2 transition duration-300 flex flex-col">
-
-                    {{-- Icon --}}
-                    <div class="h-48 flex items-center justify-center bg-slate-700">
-                        <span class="material-symbols-outlined text-blue-400 text-6xl">
-                            {{ $project->icon ?? 'code' }}
-                        </span>
-                    </div>
-
-                    {{-- Content --}}
-                    <div class="p-6 flex flex-col flex-1">
-
-                        <div class="flex justify-between items-start">
-
-                            <h3 class="text-xl font-semibold text-white">
-                                {{ $project->title }}
-                            </h3>
-
-                            @if($project->project_url)
-                                <a
-                                    href="{{ $project->project_url }}"
-                                    target="_blank"
-                                    class="text-slate-400 hover:text-blue-400">
-
-                                    <span class="material-symbols-outlined">
-                                        open_in_new
-                                    </span>
-                                </a>
-                            @endif
-
-                        </div>
-
-                        <p class="text-slate-300 mt-4 flex-1">
-                            {{ $project->description }}
-                        </p>
-                    </div>
-
-                </div>
-            @endforeach
-
-        </div>
+            
+        <img src="{{ asset('storage/'.$projects->photo) }}">
+                  
     </div>
 </section>
 

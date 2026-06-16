@@ -25,18 +25,12 @@ class ProjectInitialize extends Command
      */
     public function handle()
     {
-        $this->call('migrate:fresh', [
-            '--force' => true,
-        ]);
-        $this->call('shield:generate', [
-            '--all' => true,
-            '--panel' => 'admin',
-        ]);
-        $this->call('db:seed', [
-            '--force' => true,
-        ]);
+    $this->call('shield:generate', [
+        '--all' => true,
+        '--panel' => 'admin',
+    ]);
 
-        $this->call('filament:optimize-clear');
-        $this->call('optimize:clear');
+    $this->call('filament:optimize-clear');
+    $this->call('optimize:clear');
     }
 }

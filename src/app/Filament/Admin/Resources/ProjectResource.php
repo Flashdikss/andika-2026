@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\FileUpload;
 
 class ProjectResource extends Resource
 {
@@ -29,9 +30,12 @@ class ProjectResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('icon')
-                    ->maxLength(255)
-                    ->default(null),
+                Forms\Components\FileUpload::make('photo')
+                    ->label('Project Image')
+                    ->image()
+                    ->directory('projects')
+                    ->imageEditor()
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('sort_order')
                     ->required()
                     ->numeric()
@@ -45,8 +49,8 @@ class ProjectResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('icon')
-                    ->searchable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->square(),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),
